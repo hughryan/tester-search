@@ -44,7 +44,7 @@ Make sure the application is running
   cd ./private
   mongorestore
 ```
-##### Using original migrations (in development)
+##### Using original migrations
 ```
 cd ./private/db_migration
 ```
