@@ -110,7 +110,7 @@ TesterSearch = React.createClass({
           <SelectComponent allChecked={this.state.allDevicesChecked} selections={this.state.devices} onChange={this.onDeviceChange} onAllChange={this.onAllDevicesChange}/>
         </div>
         <div className="results">
-          {this.state.results.length > 0 ? <h3>Results:</h3> : <h3>No Results.</h3> }
+          {this.state.results.length > 0 ? <h3>Results:</h3> : <h3>No Results.</h3>}
           <ResultComponent results={this.state.results}/>
         </div>
       </div>

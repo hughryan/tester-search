@@ -22,7 +22,7 @@ Seed the database (see instructions below) then connect locally: http://localhos
   Set Node version to 0.10.40 using NVM
 ```  
   tar -zxf tester-search.tar.gz
-  cd ../bundle/programs/server
+  cd ./bundle/programs/server
   npm install
   PORT=80 MONGO_URL=mongodb://localhost:27017/tester-search node main.js
 ```
