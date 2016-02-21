@@ -1,7 +1,7 @@
-#Tester Search: Applause Interview Assignment
-###Author: Hugh McDonald (hughryanm@gmail.com)
-###Date: 2/21/16
-###Live Application: http://tester-search.hughryan.me
+#Tester Search
+#####Author: Hugh McDonald
+#####Date: 2/21/16
+#####Live Application: http://tester-search.hughryan.me
 
 ### Built Using
 ```
