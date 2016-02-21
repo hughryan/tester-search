@@ -29,28 +29,13 @@ TesterSearch = React.createClass({
   },
 
   getResults() {
-    console.log("Query: ", JSON.stringify(this.state.query));
-    Meteor.call('searchTesters', this.state.query, (error, result) => {
+    Meteor.call('searchAndSort', this.state.query, (error, result) =>{
       if (error) {
         console.log(error.reason);
         return;
       }
-      const testers = result.map((tester) => { return tester.firstName + " " + tester.lastName; });
-      let sortQuery = {};
-      if (this.state.allDevicesChecked) {
-        sortQuery = { "tester": { "$in":  testers }};
-      } else {
-        sortQuery = { "tester": { "$in":  testers }, "device": { "$in": Array.from(this.state.selectedDevices) }};
-      }
-      console.log("Testers: ", testers);
-      Meteor.call('sortTesters', sortQuery, (error, result) => {
-        if (error) {
-          console.log(error.reason);
-          return;
-        }
-        console.log("Sort:", result.map((tester) => { return "(" + tester.count + ")" + tester._id; }));
-        this.setState((state) => {state.results = result.map((item) => { return item._id; });});
-      });
+      console.log("Results:", result.map((tester) => { return "(" + tester.count + ")" + tester._id; }));
+      this.setState((state) => {state.results = result.map((item) => { return item._id; });});
     });
   },
 

@@ -27,13 +27,16 @@ if (Meteor.isServer) {
         return Testers.aggregate(pipeline);
       },
 
-      'searchTesters': (query) => {
-        return Testers.find(query).fetch();
-      },
-
-      'sortTesters': (query) => {
+      'searchAndSort': (query) => {
+        const testers = Testers.find(query).fetch().map((tester) => { return tester.name; });
+        let bugQuery = {};
+        if (query.devices) {
+          bugQuery = { "tester": { "$in": testers }, "device": query.devices };
+        } else {
+          bugQuery = { "tester": { "$in": testers}};
+        }
         var pipeline = [
-          { "$match": query },
+          { "$match": bugQuery },
           { "$group": {
               "_id": {
                 "tester": "$tester",
