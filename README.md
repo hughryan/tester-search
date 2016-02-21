@@ -1,7 +1,7 @@
-# Tester Search: Applause Interview Assignment
+#Tester Search: Applause Interview Assignment
 ###Author: Hugh McDonald (hughryanm@gmail.com)
 ###Date: 2/21/16
-###This README is hosted at: https://gist.github.com/hughryan/db61a334326e9a73a256
+###Live Application: http://tester-search.hughryan.me
 
 ### Built Using
 ```
