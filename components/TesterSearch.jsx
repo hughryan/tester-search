@@ -34,8 +34,7 @@ TesterSearch = React.createClass({
         console.log(error.reason);
         return;
       }
-      console.log("Results:", result.map((tester) => { return "(" + tester.count + ")" + tester._id; }));
-      this.setState((state) => {state.results = result.map((item) => { return item._id; });});
+      this.setState((state) => {state.results = result;});
     });
   },
 

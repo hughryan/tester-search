@@ -28,27 +28,29 @@ if (Meteor.isServer) {
       },
 
       'searchAndSort': (query) => {
-        const testers = Testers.find(query).fetch().map((tester) => { return tester.name; });
+        const testers = Testers.find(query).fetch().map((tester) => { return tester.testerId; });
         let bugQuery = {};
         if (query.devices) {
-          bugQuery = { "tester": { "$in": testers }, "device": query.devices };
+          bugQuery = { "testerId": { "$in": testers }, "device": query.devices };
         } else {
-          bugQuery = { "tester": { "$in": testers}};
+          bugQuery = { "testerId": { "$in": testers}};
         }
         var pipeline = [
           { "$match": bugQuery },
           { "$group": {
               "_id": {
-                "tester": "$tester",
+                "testerId": "$testerId",
                 "device": "$device"
               },
+              "name": { "$first": "$tester" },
               "bugCount": { "$sum": 1 }
             }},
           { "$group": {
-              "_id": "$_id.tester",
+              "_id": "$_id.testerId",
+              "name": { "$first": "$name"},
               "bugs": {
                 "$push": {
-                  "bug": "$_id.bugId",
+                  "device": "$_id.device",
                   "count": "$bugCount"
                 },
               },
@@ -56,7 +58,9 @@ if (Meteor.isServer) {
             }},
             { "$sort": { "count": -1 } }
         ];
-        return Bugs.aggregate(pipeline);
+        result = Bugs.aggregate(pipeline);
+        //console.log("Results:", JSON.stringify(result, null, 2));
+        return result.map((tester) => { return tester.name; });
       }
     });
 }
