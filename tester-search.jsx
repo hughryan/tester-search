@@ -58,7 +58,7 @@ if (Meteor.isServer) {
             }},
             { "$sort": { "count": -1 } }
         ];
-        result = Bugs.aggregate(pipeline);
+        const result = Bugs.aggregate(pipeline);
         //console.log("Results:", JSON.stringify(result, null, 2));
         return result.map((tester) => { return tester.name; });
       }
