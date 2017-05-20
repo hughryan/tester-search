@@ -1,7 +1,4 @@
 #Tester Search
-#####Author: Hugh McDonald
-#####Date: 2/21/16
-#####Live Application: http://tester-search.hughryan.me
 
 ### Built Using
 ```
